@@ -17,7 +17,7 @@ const getContacts = asyncHandler(async (req, res) => {
 //@route GET /api/contacts/:id
 //@access private
 const getContact = asyncHandler(async (req, res) => {
-    const contact = await Contact.find({ _id: req.params.id }).exec();
+    const contact = await Contact.findOne({ _id: req.params.id, user_id: req.user.id }).exec();
     if (!contact) {
         res.status(404);
         throw new Error('Contatto non trovato');
@@ -43,7 +43,7 @@ const createContact = asyncHandler(async (req, res) => {
 //@route Put /api/contacts/:id
 //@access private
 const updateContact = asyncHandler(async (req, res) => {
-    const contact = await Contact.findById({ _id: req.params.id }).exec;
+    const contact = await Contact.findOne({ _id: req.params.id }).exec();
     if (!contact) {
         res.status(404);
         throw new Error('Contatto non trovato');
@@ -54,11 +54,16 @@ const updateContact = asyncHandler(async (req, res) => {
         throw new Error('Utente non è autorizzato ad accedere a questi dati');
     }
 
-    const updateContact = await Contact.findByIdAndUpdate(
-        req.params.id,
-        req.body,
+    const updateContact = await Contact.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            user_id: req.user.id,
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone
+        },
         { new: true }
-    );
+    ).exec();
     res.status(200).json(updateContact);
 });
 
