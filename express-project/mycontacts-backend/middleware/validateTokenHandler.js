@@ -11,8 +11,15 @@ const validateToken = asyncHandler(async (req, res, next) => {
                 res.status(401);
                 throw new Error("Utente non è autorizzato")
             }
-            console.log(decoded)
+            req.user = decoded.user;
+            next();
         })
+
+        if (!token) {
+            res.status(401);
+            throw new Error("Utente non è autorizzato")
+        }
+
     } else {
         res.status(401);
         throw new Error("Utente non è autorizzato")
