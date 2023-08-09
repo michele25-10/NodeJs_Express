@@ -1,8 +1,8 @@
-# NodeJs_Express-Moduli
-Node js
-Express
-Mongoose --> connect to mongoDB
-bcrypt --> criptare password user after login
-express-async-handler
-Jason Web Token 
+# NodeJs_Express-Moduli:
+
+Node jsExpress/n
+Mongoose --> connect to mongoDB/n
+bcrypt --> criptare password user after login/n
+express-async-handler\n
+Jason Web Token \n
 
