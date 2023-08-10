@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h2>Test di:</h2>
+        <ul>
+            <li>CallBack</li>
+            <li>Oggetto this</li>
+            <li>Arrow function</li>
+        </ul>
+    </body>
+</html>
+
+<script>
+    //Scope globale
+
+
+    //Callback function ovvero una funzione che viene richiamata
+    // come argomento all'interno di un'altra funzione
+    function somma(a, b){
+        return a + b; 
+    }
+    function verifica(somma, a, b){
+        if (a < b){
+            return somma(a, b); 
+        }else{
+            return "Impossibile";
+        }
+    }
+    console.log(verifica(somma, 3, 4));
+    //Fine dello scope
+</script>
