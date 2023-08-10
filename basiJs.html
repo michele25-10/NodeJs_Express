@@ -59,5 +59,26 @@
 
   /*---------------------------------------------------------------------------*/
 
+  /*
+  Quando utilizzare le arrow function
+  Data la sintassi compatta delle arrow function, esse si prestano molto bene ad essere utilizzate come callback.
+  */
+
+  function verificaArrowFunction(divisione, x, y) {
+    if (x != y) {
+      return divisione(x, y);
+    } else {
+      return "il risultato è 1";
+    }
+  }
+  console.log(
+    verificaArrowFunction(
+      (divisione = (x, y) => {
+        return x / y;
+      }),
+      8,
+      8
+    )
+  );
   //Fine dello scope
 </script>
