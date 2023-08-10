@@ -1,34 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-
-    </head>
-    <body>
-        <h2>Test di:</h2>
-        <ul>
-            <li>CallBack</li>
-            <li>Oggetto this</li>
-            <li>Arrow function</li>
-        </ul>
-    </body>
+  <head> </head>
+  <body>
+    <h2>Test di:</h2>
+    <ul>
+      <li>CallBack</li>
+      <li>Oggetto this</li>
+      <li>Arrow function</li>
+    </ul>
+  </body>
 </html>
 
 <script>
-    //Scope globale
+  //Scope globale
 
+  //Callback function ovvero una funzione che viene richiamata
+  // come argomento all'interno di un'altra funzione
+  function somma(a, b) {
+    return a + b;
+  }
 
-    //Callback function ovvero una funzione che viene richiamata
-    // come argomento all'interno di un'altra funzione
-    function somma(a, b){
-        return a + b; 
+  function verifica(somma, a, b) {
+    if (a < b) {
+      return somma(a, b);
+    } else {
+      return "Impossibile";
     }
-    function verifica(somma, a, b){
-        if (a < b){
-            return somma(a, b); 
-        }else{
-            return "Impossibile";
-        }
-    }
-    console.log(verifica(somma, 3, 4));
-    //Fine dello scope
+  }
+
+  console.log(verifica(somma, 3, 4));
+
+  /*------------------------------------------------------------------*/
+
+  //THIS in the object
+  var persona = {
+    nome: "Mario",
+    eta: 39,
+    string: function () {
+      return this.nome + " " + this.eta.toString();
+    },
+  };
+
+  /*Il primo metodo è call() che permette di invocare una funzione impostando il primo 
+  parametro come oggetto di riferimento per this ed i parametri successivi, in numero
+  variabile, come valori da passare alla funzione.*/
+
+  function saluta(string) {
+    console.log("Buongiorno " + string.call(persona));
+  }
+
+  saluta(persona.string);
+
+  /*Il secondo metodo è apply(), del tutto simile a call() con la differenza che prevede due soli parametri: il primo è 
+  l'oggetto da associare a this mentre il secondo parametro è un array dei valori da passare alla funzione da invocare.
+  
+  fun.apply(thisArg, [argsArray])
+  */
+
+  /*---------------------------------------------------------------------------*/
+
+  //Fine dello scope
 </script>
