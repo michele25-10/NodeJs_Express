@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <h1>Promise</h1>
+    <h2>Cos'è?</h2>
+    <p>
+      Una promise è uno speciale oggetto JavaScript che collega il “codice
+      produttore” con il “codice consumatore”. Nei termini della nostra
+      analogia: questa è “la lista abbonamenti”.<br />
+      Il “codice produttore” si prende tutto il tempo necessario a produrre il
+      risultato promesso, e la “promise” rende il risultato disponibile per
+      tutto il codice iscritto quando è pronto.
+    </p>
+    <hr />
+    <p>
+      La funzione passata a new Promise è chiamata esecutore (executor). Quando
+      la promise è creata, questa funzione esecutore viene eseguita
+      automaticamente.<br />
+      Contiene il codice produttore, che eventualmente produrrà un risultato.
+      Nei termini dell’analogia precedente: l’esecutore è il “cantante”. I suoi
+      argomenti resolve e reject sono delle callback fornite da JavaScript
+      stesso.<br />
+      Il nostro codice sta solamente dentro l’esecutore.
+    </p>
+    <ul>
+      <li>
+        resolve(value) se il processo termina correttamente, col risultato
+        value.
+      </li>
+      <li>reject(error) se siverifica un errore, error è l’oggetto errore.</li>
+    </ul>
+
+    <hr />
+  </body>
+</html>
+
+<script>
+  let promise = new Promise(function (resolve, reject) {
+    setTimeout(() => resolve("fatto!"), 1000);
+  });
+
+  promise.then(
+    (result) => alert(result), // mostra "fatto!" dopo 1 secondo
+    (error) => alert(error) // non viene eseguito
+  );
+</script>
