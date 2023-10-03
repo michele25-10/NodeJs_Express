@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+</html>
+
+<script>
+  const stringa = "sono $nome $cognome, ho $eta anni";
+  const valore = {
+    nome: "michele",
+    cognome: "gabrieli",
+    eta: 10,
+  };
+
+  let strSplit = stringa.split(" ");
+  let newString = "";
+  for (let i = 0; i < strSplit.length; i++) {
+    if (strSplit[i][0] == "$") {
+      let variabile = strSplit[i].substring(1, strSplit[i].length);
+      if (
+        strSplit[i][strSplit[i].length - 1] == "," ||
+        strSplit[i][strSplit[i].length - 1] == "." ||
+        strSplit[i][strSplit[i].length - 1] == ";" ||
+        strSplit[i][strSplit[i].length - 1] == "!" ||
+        strSplit[i][strSplit[i].length - 1] == "?"
+      ) {
+        let variabile = strSplit[i].substring(1, strSplit[i].length - 1);
+        newString +=
+          " " + valore[variabile] + strSplit[i][strSplit[i].length - 1];
+      } else {
+        newString += " " + valore[variabile];
+      }
+    } else {
+      newString += " " + strSplit[i];
+    }
+  }
+  if (newString[0] == " ") {
+    newString = newString.substring(1, newString.length);
+  }
+  console.log(newString);
+</script>
