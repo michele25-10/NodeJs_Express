@@ -1,2 +1,3 @@
 #ignora le cartelle node modules in quessta directory
 node_modules
+data
