@@ -27,5 +27,18 @@ async function generateRandomString(iLen) {
 }
 
 module.exports = {
-    createFile
+    createFile,
+    deleteFile: async (directory) => {
+        fs.readdir(directory, (err, files) => {
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
+            }
+            files.forEach(function (file) {
+                const pathFile = directory + '/' + file;
+                fs.unlinkSync(pathFile);
+            });
+        });
+
+        console.log("Procedura terminata");
+    }
 };

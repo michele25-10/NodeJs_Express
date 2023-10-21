@@ -5,8 +5,7 @@ const { createZip } = require('../common/zip');
 async function app() {
     await createDirectory();
     await createFile();
-    createZip();
-
+    await createZip();
 };
 
 app();

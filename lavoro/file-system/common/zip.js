@@ -1,8 +1,9 @@
 const JSZip = require('jszip');
 const fs = require('fs');
 const moment = require('moment');
+const { deleteFile } = require('./file');
 
-const createZip = () => {
+const createZip = async () => {
     const zip = new JSZip();
 
     try {
@@ -22,7 +23,7 @@ const createZip = () => {
             zip.generateNodeStream({ type: 'nodebuffer', streamFiles: true })
                 .pipe(fs.createWriteStream(zipName))
                 .on('finish', function () {
-                    console.log("sample.zip written.");
+                    deleteFile('./data');
                 });
         });
 
